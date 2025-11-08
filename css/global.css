@@ -134,6 +134,35 @@ header {
   background-color: var(--hover-bg);
 }
 
+/* Menú desplegable */
+.sidebar .dropdown > a {
+  cursor: pointer;
+  position: relative;
+}
+
+.sidebar .submenu {
+  list-style: none;
+  padding-left: 1.5rem;
+  margin-top: 0.5rem;
+  display: none;
+  flex-direction: column;
+}
+
+.sidebar .submenu li {
+  margin-bottom: 0.8rem;
+}
+
+.sidebar .dropdown.active .submenu {
+  display: flex;
+}
+
+.sidebar .dropdown-toggle::after {
+  content: "▼";
+  font-size: 0.6rem;
+  margin-left: auto;
+  color: var(--accent);
+}
+
 /* Dark mode toggle */
 .dark-mode-toggle {
   margin-top: 2rem;
@@ -188,70 +217,11 @@ header {
   object-fit: contain;
   vertical-align: middle;
 }
+
 body.dark-mode .icon {
   filter: brightness(0) invert(1);
 }
+
 .icon {
   transition: filter 0.3s ease;
 }
-
-/*PARTE CONSULTA EMPLEADOS*/
-
-.consulta-empleado {
-  margin-bottom: 2rem;
-}
-
-#busquedaEmpleado {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-#filtroEmpleado {
-  flex: 1;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
-
-.tabla-empleados {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.tabla-empleados th,
-.tabla-empleados td {
-  padding: 0.75rem;
-  border-bottom: 1px solid #ddd;
-  text-align: left;
-}
-
-/* Menú desplegable */
-.sidebar .dropdown > a {
-  cursor: pointer;
-  position: relative;
-}
-
-.sidebar .submenu {
-  list-style: none;
-  padding-left: 1.5rem;
-  margin-top: 0.5rem;
-  display: none;
-  flex-direction: column;
-}
-
-.sidebar .submenu li {
-  margin-bottom: 0.8rem;
-}
-
-.sidebar .dropdown.active .submenu {
-  display: flex;
-}
-
-.sidebar .dropdown-toggle::after {
-  content: "▼";
-  font-size: 0.6rem;
-  margin-left: auto;
-  color: var(--accent);
-}
-

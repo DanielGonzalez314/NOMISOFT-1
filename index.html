@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NOMISOFT</title>
-  <link rel="stylesheet" href="scripts/style.css" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/empleado.css" />
 </head>
 <body>
   <!-- HEADER -->
@@ -18,43 +19,38 @@
         </div>
       </div>
       <div class="brand">
-        <img src="icons/udemy.svg" alt="Logo NOMISOFT" class="logo" />
+        <img src="assets/icons/udemy.svg" alt="Logo NOMISOFT" class="logo" />
         <span class="name">NOMISOFT</span>
       </div>
     </div>
     <div class="right">
-      <a href="#"><img src="icons/chat.svg" alt="Chat" class="icon" /></a>
-      <a href="#"><img src="icons/question.svg" alt="Ayuda" class="icon" /></a>
-      <a href="#"><img src="icons/notification.svg" alt="Notificaciones" class="icon" /></a>
-      <img src="img/icono usuario.png" alt="Usuario" class="user" />
+      <a href="#"><img src="assets/icons/chat.svg" alt="Chat" class="icon" /></a>
+      <a href="#"><img src="assets/icons/question.svg" alt="Ayuda" class="icon" /></a>
+      <a href="#"><img src="assets/icons/notification.svg" alt="Notificaciones" class="icon" /></a>
+      <img src="assets/img/icono usuario.png" alt="Usuario" class="user" />
     </div>
   </header>
 
   <!-- SIDEBAR -->
   <aside class="sidebar" id="sidebar">
     <ul>
-      <li><a href="#" id="mostrarPanel"><img src="icons/chat.svg" class="icon" /> Inicio</a></li>
-      <li><a href="#"><img src="icons/question.svg" class="icon" /> Servicios</a></li>
-
-      <!-- EMPLEADO -->
+      <li><a href="#" id="mostrarPanel"><img src="assets/icons/chat.svg" class="icon" /> Inicio</a></li>
+      <li><a href="#"><img src="assets/icons/question.svg" class="icon" /> Servicios</a></li>
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle"><img src="icons/chat.svg" class="icon" /> Empleado</a>
+        <a href="#" class="dropdown-toggle"><img src="assets/icons/chat.svg" class="icon" /> Empleado</a>
         <ul class="submenu">
           <li><a href="#">Registrar empleado</a></li>
           <li><a href="#" id="mostrarConsulta">Consultar</a></li>
         </ul>
       </li>
-
-      <!-- NÓMINA -->
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle"><img src="icons/money.svg" class="icon" /> Nómina</a>
+        <a href="#" class="dropdown-toggle"><img src="assets/icons/money.svg" class="icon" /> Nómina</a>
         <ul class="submenu">
           <li><a href="#">Crear nómina</a></li>
           <li><a href="#">Liquidar nómina</a></li>
         </ul>
       </li>
     </ul>
-
     <div class="dark-mode-toggle">
       <button id="toggleDarkMode" class="dark-toggle">🌙 Modo oscuro</button>
     </div>
@@ -62,57 +58,58 @@
 
   <!-- MAIN CONTENT -->
   <main class="content">
-
-    <!--  PANEL PRINCIPAL -->
+    <!-- Panel de Nómina -->
     <section id="panelNomina">
       <h2>Panel de Nómina</h2>
-
       <div class="card">
         <h3>Resumen de empleados</h3>
-        <p>Actualmente hay 24 empleados activos en la nómina.</p>
+        <p>Actualmente hay 26 empleados activos en la nómina.</p>
       </div>
-
       <div class="card">
         <h3>Último pago</h3>
         <p>La nómina del 15 de octubre fue procesada correctamente.</p>
       </div>
-
       <div class="card">
         <h3>Reportes disponibles</h3>
         <ul>
           <li>Historial de pagos</li>
-          <li>Retenciones y aportes</li>
-          <li>Horas extras</li>
+          <li>Historial de aportes</li>
+          <li>Bonos extra</li>
         </ul>
       </div>
     </section>
 
-    <!--  MÓDULO DE CONSULTA DE EMPLEADOS -->
+    <!-- Consulta de Empleados -->
     <section id="consultaEmpleado" style="display: none;">
       <h2>Consulta de Empleados</h2>
-      <form id="busquedaEmpleado">
-        <input type="text" placeholder="Buscar por nombre o ID" id="filtroEmpleado" />
-        <button type="submit">Buscar</button>
+      <form id="filtroAvanzado" class="filtro-empleado">
+        <div class="filtro-grid">
+          <label>Salario base: <input type="number" id="salarioBase" /></label>
+          <label>Fecha de ingreso: <input type="date" id="fechaIngreso" /></label>
+          <label>Departamento: <input type="text" id="departamento" /></label>
+          <label>Cargo: <input type="text" id="cargo" /></label>
+          <label>Estado Civil:
+            <select id="estadoCivil">
+              <option value="">--</option>
+              <option value="Soltero">Soltero</option>
+              <option value="Casado">Casado</option>
+            </select>
+          </label>
+          <label>Número de Hijos: <input type="number" id="hijos" /></label>
+          <label>Fecha de nacimiento: <input type="date" id="fechaNacimiento" /></label>
+        </div>
+        <div class="opciones-extra">
+          <label><input type="checkbox" id="mostrarDocumento" /> Tipo de Documento</label>
+          <label><input type="checkbox" id="mostrarTelefono" /> Teléfono</label>
+          <label><input type="checkbox" id="mostrarCorreo" /> Correo Electrónico</label>
+        </div>
+        <button type="submit">Filtrar</button>
       </form>
-
-      <table class="tabla-empleados">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Cargo</th>
-            <th>Salario</th>
-            <th>Estado</th>
-          </tr>
-        </thead>
-        <tbody id="resultadoEmpleado">
-          <!-- Resultados dinámicos -->
-        </tbody>
-      </table>
+      <div id="resultadoAvanzado" class="resultado-empleado"></div>
     </section>
-
   </main>
 
-  <script src="scripts/script.js"></script>
+  <script src="js/global.js"></script>
+  <script src="js/empleado.js"></script>
 </body>
 </html>

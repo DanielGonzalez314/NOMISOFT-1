@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="scripts/style.css" />
 </head>
 <body>
+  <!-- HEADER -->
   <header>
     <div class="left">
       <div class="menu-container" id="toggleSidebar">
@@ -29,39 +30,87 @@
     </div>
   </header>
 
+  <!-- SIDEBAR -->
   <aside class="sidebar" id="sidebar">
     <ul>
-      <li><a href="#"><img src="icons/chat.svg" class="icon" /> Inicio</a></li>
+      <li><a href="#" id="mostrarPanel"><img src="icons/chat.svg" class="icon" /> Inicio</a></li>
       <li><a href="#"><img src="icons/question.svg" class="icon" /> Servicios</a></li>
-      <li><a href="#"><img src="icons/notification.svg" class="icon" /> Acerca de</a></li>
-      <li><a href="#"><img src="icons/chat.svg" class="icon" /> Contacto</a></li>
+
+      <!-- EMPLEADO -->
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle"><img src="icons/chat.svg" class="icon" /> Empleado</a>
+        <ul class="submenu">
+          <li><a href="#">Registrar empleado</a></li>
+          <li><a href="#" id="mostrarConsulta">Consultar</a></li>
+        </ul>
+      </li>
+
+      <!-- NÓMINA -->
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle"><img src="icons/money.svg" class="icon" /> Nómina</a>
+        <ul class="submenu">
+          <li><a href="#">Crear nómina</a></li>
+          <li><a href="#">Liquidar nómina</a></li>
+        </ul>
+      </li>
     </ul>
+
     <div class="dark-mode-toggle">
       <button id="toggleDarkMode" class="dark-toggle">🌙 Modo oscuro</button>
     </div>
   </aside>
 
+  <!-- MAIN CONTENT -->
   <main class="content">
-    <h2>Panel de Nómina</h2>
 
-    <div class="card">
-      <h3>Resumen de empleados</h3>
-      <p>Actualmente hay 24 empleados activos en la nómina.</p>
-    </div>
+    <!--  PANEL PRINCIPAL -->
+    <section id="panelNomina">
+      <h2>Panel de Nómina</h2>
 
-    <div class="card">
-      <h3>Último pago</h3>
-      <p>La nómina del 15 de octubre fue procesada correctamente.</p>
-    </div>
+      <div class="card">
+        <h3>Resumen de empleados</h3>
+        <p>Actualmente hay 24 empleados activos en la nómina.</p>
+      </div>
 
-    <div class="card">
-      <h3>Reportes disponibles</h3>
-      <ul>
-        <li>Historial de pagos</li>
-        <li>Retenciones y aportes</li>
-        <li>Horas extras</li>
-      </ul>
-    </div>
+      <div class="card">
+        <h3>Último pago</h3>
+        <p>La nómina del 15 de octubre fue procesada correctamente.</p>
+      </div>
+
+      <div class="card">
+        <h3>Reportes disponibles</h3>
+        <ul>
+          <li>Historial de pagos</li>
+          <li>Retenciones y aportes</li>
+          <li>Horas extras</li>
+        </ul>
+      </div>
+    </section>
+
+    <!--  MÓDULO DE CONSULTA DE EMPLEADOS -->
+    <section id="consultaEmpleado" style="display: none;">
+      <h2>Consulta de Empleados</h2>
+      <form id="busquedaEmpleado">
+        <input type="text" placeholder="Buscar por nombre o ID" id="filtroEmpleado" />
+        <button type="submit">Buscar</button>
+      </form>
+
+      <table class="tabla-empleados">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Cargo</th>
+            <th>Salario</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody id="resultadoEmpleado">
+          <!-- Resultados dinámicos -->
+        </tbody>
+      </table>
+    </section>
+
   </main>
 
   <script src="scripts/script.js"></script>

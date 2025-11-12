@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="css/empleado.css" />
 </head>
 <body>
-  <!-- HEADER -->
+  <!-- 🔷 HEADER -->
   <header>
     <div class="left">
       <div class="menu-container" id="toggleSidebar">
@@ -31,7 +31,7 @@
     </div>
   </header>
 
-  <!-- SIDEBAR -->
+  <!-- 🔷 SIDEBAR -->
   <aside class="sidebar" id="sidebar">
     <ul>
       <li><a href="#" id="mostrarPanel"><img src="assets/icons/chat.svg" class="icon" /> Inicio</a></li>
@@ -56,7 +56,7 @@
     </div>
   </aside>
 
-  <!-- MAIN CONTENT -->
+  <!-- 🔷 MAIN CONTENT -->
   <main class="content">
     <!-- Panel de Nómina -->
     <section id="panelNomina">
@@ -84,24 +84,32 @@
       <h2>Consulta de Empleados</h2>
       <form id="filtroAvanzado" class="filtro-empleado">
         <div class="filtro-grid">
-          <label>Salario base: <input type="number" id="salarioBase" /></label>
-          <label>Fecha de ingreso: <input type="date" id="fechaIngreso" /></label>
-          <label>Departamento: <input type="text" id="departamento" /></label>
-          <label>Cargo: <input type="text" id="cargo" /></label>
-          <label>Estado Civil:
-            <select id="estadoCivil">
+          <label>Nombre: <input type="text" id="Nombre" name="Nombre" /></label>
+          <label>Documento: <input type="text" id="Documento" name="Documento" /></label>
+          <label>Departamento: <input type="text" id="Departamento" name="Departamento" /></label>
+          <label>Cargo: <input type="text" id="Cargo" name="Cargo" /></label>
+          <label>Estado: <input type="text" id="Estado" name="Estado" /></label>
+          <label>Salario: 
+            <select id="SalarioRange" name="SalarioRange">
               <option value="">--</option>
-              <option value="Soltero">Soltero</option>
-              <option value="Casado">Casado</option>
+              <option value="1.400.000 - 1.999.999">1.400.000 - 1.999.999</option>
+              <option value="2.000.000 - 2.999.999">2.000.000 - 2.999.999</option>
+              <option value="3.000.000 - 4.999.999">3.000.000 - 4.999.999</option>
+              <option value="+ 5.000.000">+ 5.000.000</option>
             </select>
           </label>
-          <label>Número de Hijos: <input type="number" id="hijos" /></label>
-          <label>Fecha de nacimiento: <input type="date" id="fechaNacimiento" /></label>
+          <label>Fecha de Ingreso: <input type="text" id="Fecha_Ingreso" name="Fecha_Ingreso" /></label>
+          <label>Fecha de Nacimiento: <input type="text" id="Fecha_Nacimiento" name="Fecha_Nacimiento" /></label>
+          <label>Número de Hijos: <input type="number" id="Numero_Hijos" name="Numero_Hijos" /></label>
         </div>
         <div class="opciones-extra">
-          <label><input type="checkbox" id="mostrarDocumento" /> Tipo de Documento</label>
-          <label><input type="checkbox" id="mostrarTelefono" /> Teléfono</label>
-          <label><input type="checkbox" id="mostrarCorreo" /> Correo Electrónico</label>
+          <label><input type="checkbox" id="Tipo_Documento" name="Tipo_Documento" /> Tipo de Documento</label>
+          <label><input type="checkbox" id="Telefono" name="Telefono" /> Teléfono</label>
+          <label><input type="checkbox" id="Correo" name="Correo" /> Correo Electrónico</label>
+          <label><input type="checkbox" id="Direccion" name="Direccion" /> Dirección</label>
+          <label><input type="checkbox" id="Estado_Civil" name="Estado_Civil" /> Estado Civil</label>
+          <label><input type="checkbox" id="Cargo_Check" name="Cargo_Check" /> Cargo</label>
+          <label><input type="checkbox" id="Fecha_Nacimiento_Check" name="Fecha_Nacimiento_Check" /> Fecha de Nacimiento</label>
         </div>
         <button type="submit">Filtrar</button>
       </form>
@@ -109,6 +117,7 @@
     </section>
   </main>
 
+  <!-- 🔷 SCRIPTS -->
   <script src="js/global.js"></script>
   <script src="js/empleado.js"></script>
 </body>

@@ -4,37 +4,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!filtroAvanzado || !resultadoAvanzado) return;
 
-  filtroAvanzado.addEventListener('submit', function (e) {
-    e.preventDefault();
+  filtroAvanzado.addEventListener('submit', async function (e) {
+  e.preventDefault();
 
-    // Captura de filtros
-    const salarioBase = document.getElementById('salarioBase')?.value;
-    const fechaIngreso = document.getElementById('fechaIngreso')?.value;
-    const departamento = document.getElementById('departamento')?.value;
-    const cargo = document.getElementById('cargo')?.value;
-    const estadoCivil = document.getElementById('estadoCivil')?.value;
-    const hijos = document.getElementById('hijos')?.value;
-    const fechaNacimiento = document.getElementById('fechaNacimiento')?.value;
+  const filtros = {
+    Nombre: document.getElementById('Nombre')?.value,
+    Documento: document.getElementById('Documento')?.value,
+    Departamento: document.getElementById('Departamento')?.value,
+    Cargo: document.getElementById('Cargo')?.value,
+    Estado: document.getElementById('Estado')?.value,
+    SalarioRange: document.getElementById('SalarioRange')?.value,
+    Fecha_Ingreso: document.getElementById('Fecha_Ingreso')?.value,
+    Fecha_Nacimiento: document.getElementById('Fecha_Nacimiento')?.value,
+    Numero_Hijos: document.getElementById('Numero_Hijos')?.value,
+    Tipo_Documento: document.getElementById('Tipo_Documento')?.checked,
+    Telefono: document.getElementById('Telefono')?.checked,
+    Correo: document.getElementById('Correo')?.checked,
+    Direccion: document.getElementById('Direccion')?.checked,
+    Estado_Civil: document.getElementById('Estado_Civil')?.checked,
+    Cargo_Check: document.getElementById('Cargo_Check')?.checked,
+    Fecha_Nacimiento_Check: document.getElementById('Fecha_Nacimiento_Check')?.checked
+  };
 
-    // Opciones extra
-    const mostrarDocumento = document.getElementById('mostrarDocumento')?.checked;
-    const mostrarTelefono = document.getElementById('mostrarTelefono')?.checked;
-    const mostrarCorreo = document.getElementById('mostrarCorreo')?.checked;
+  console.log("Filtros enviados:", filtros);
 
-    // Simulación de resultado
-    resultadoAvanzado.innerHTML = `
-      <h3>Resultados filtrados</h3>
-      <p>Mostrando empleados que coinciden con los filtros seleccionados.</p>
-      <ul>
-        <li><strong>Nombre:</strong> Manuela Murcia</li>
-        <li><strong>Cargo:</strong> Contadora</li>
-        <li><strong>Departamento:</strong> Finanzas</li>
-        <li><strong>Salario:</strong> $3.200.000</li>
-        <li><strong>Estado Civil:</strong> Soltera</li>
-        ${mostrarDocumento ? '<li><strong>Tipo de Documento:</strong> Cédula de Ciudadanía</li>' : ''}
-        ${mostrarTelefono ? '<li><strong>Teléfono:</strong> 321-456-7890</li>' : ''}
-        ${mostrarCorreo ? '<li><strong>Correo Electrónico:</strong> manuela@empresa.com</li>' : ''}
-      </ul>
-    `;
+  const response = await fetch('http://localhost:5000/api/empleados/consultar', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(filtros)
   });
+
+  const empleados = await response.json();
+  // Renderizar resultados en resultadoAvanzado...
+});
 });

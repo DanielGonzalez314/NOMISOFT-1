@@ -1,4 +1,4 @@
-// 🌙 MODO OSCURO
+// MODO OSCURO
 const toggleDarkMode = document.getElementById('toggleDarkMode');
 toggleDarkMode?.addEventListener('click', () => {
   document.body.classList.toggle('dark-mode');
@@ -15,7 +15,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// 🧭 BARRA LATERAL
+// BARRA LATERAL
 const toggleSidebar = document.getElementById('toggleSidebar');
 const sidebar = document.getElementById('sidebar');
 
@@ -23,7 +23,7 @@ toggleSidebar?.addEventListener('click', () => {
   sidebar.classList.toggle('active');
 });
 
-// 📂 MENÚS DESPLEGABLES
+// MENUS DESPLEGABLES
 document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
   toggle.addEventListener('click', (e) => {
     e.preventDefault();
@@ -31,7 +31,7 @@ document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
   });
 });
 
-// 🔄 NAVEGACIÓN ENTRE MÓDULOS
+// NAVEGACION ENTRE MODULOS
 const mostrarConsulta = document.getElementById('mostrarConsulta');
 const mostrarPanel = document.getElementById('mostrarPanel');
 const panelNomina = document.getElementById('panelNomina');

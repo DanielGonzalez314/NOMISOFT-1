@@ -1,0 +1,279 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.main {
+    width: 100%;
+    background: linear-gradient(to top, rgba(171,171,171,0.5), rgba(171,171,171,0.5)), url(fondo_inicio.jpg);
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+/* ----- NAVBAR ----- */
+.navbar {
+    width: 100%;
+    max-width: 1200px;
+    height: 75px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    position: relative;
+}
+
+.logo {
+    color: rgb(23, 14, 94);
+    font-size: 35px;
+}
+
+.menu ul {
+    display: flex;
+    list-style: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.menu ul li {
+    margin: 0 15px;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: darkblue;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.menu ul li a:hover {
+    color: white;
+}
+
+.Buscar {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.busq {
+    width: 150px;
+    height: 35px;
+    background: transparent;
+    border: 1px solid blue;
+    color: white;
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+    padding-left: 10px;
+}
+
+.Busqueda_Inicio {
+    height: 38px;
+    width: 100px;
+    background: rgba(2, 2, 114, 0.779);
+    border: 2px solid rgba(0, 0, 135, 0.658);
+    color: white;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.Busqueda_Inicio:hover {
+    background: white;
+    color: darkblue;
+}
+
+/* ----- ICONO HAMBURGUESA ----- */
+.menu-toggle {
+    display: none;
+    font-size: 35px;
+    color: darkblue;
+    cursor: pointer;
+}
+
+/* ----- CONTENIDO ----- */
+.contenido {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    color: white;
+    position: relative;
+    padding: 60px 20px;
+}
+
+.contenido h1 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 50px;
+    line-height: 1.2;
+}
+
+.contenido span {
+    color: rgb(23, 14, 94);
+    font-size: 55px;
+}
+
+.parrafo {
+    margin-top: 15px;
+    line-height: 1.8;
+}
+
+.unete {
+    width: 160px;
+    height: 40px;
+    background: rgba(0, 0, 139, 0.674);
+    border: none;
+    margin-top: 20px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.unete a {
+    text-decoration: none;
+    color: white;
+}
+
+.unete:hover {
+    background: white;
+    color: darkblue;
+}
+
+/* ----- FORMULARIO ----- */
+.form {
+    width: 280px;
+    background: rgba(105, 107, 129, 0.608);
+    position: absolute;
+    top: 60px;
+    right: 40px;
+    border-radius: 25px;
+    padding: 25px;
+    color: white;
+}
+
+.form h2 {
+    text-align: center;
+    background-color: white;
+    color: #077cc0;
+    border-radius: 10px;
+    padding: 8px;
+}
+
+.form input {
+    width: 100%;
+    height: 35px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+    color: white;
+    font-size: 15px;
+    margin-top: 25px;
+}
+
+.form input::placeholder {
+    color: white;
+}
+
+.boton {
+    width: 100%;
+    height: 40px;
+    background: #077cc0;
+    border: none;
+    margin-top: 30px;
+    font-size: 17px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    transition: 0.3s;
+}
+
+.boton:hover {
+    background: white;
+    color: darkblue;
+}
+
+.link, .liw {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 15px;
+}
+
+.link a {
+    color: rgb(255, 182, 193);
+    text-decoration: none;
+}
+
+.icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.icons ion-icon {
+    color: white;
+    font-size: 30px;
+    margin: 0 10px;
+    transition: 0.3s;
+}
+
+.icons ion-icon:hover {
+    color: rgb(0, 162, 255);
+}
+
+/* ----- RESPONSIVE ----- */
+@media (max-width: 992px) {
+    .menu ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: rgba(0, 0, 90, 0.8);
+        position: absolute;
+        top: 75px;
+        left: 0;
+        text-align: center;
+        padding: 15px 0;
+    }
+
+    .menu.active ul {
+        display: flex;
+    }
+
+    .menu ul li {
+        margin: 15px 0;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .Buscar {
+        display: none;
+    }
+
+    .form {
+        position: static;
+        margin: 40px auto 0;
+    }
+
+    .contenido {
+        text-align: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .contenido h1 {
+        font-size: 35px;
+    }
+
+    .contenido span {
+        font-size: 40px;
+    }
+
+    .form {
+        width: 90%;
+    }
+}

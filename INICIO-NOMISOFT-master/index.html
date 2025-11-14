@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOMISOFT</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="logo">Nomisoft</h2>
+            </div>
+
+            <div class="menu">
+                <ul>
+                    <li><a href="#">INICIO</a></li>
+                    <li><a href="#">SOBRE NOSOTROS</a></li>
+                    <li><a href="#">SERVICIOS</a></li>
+                    <li><a href="#">NOTICIAS</a></li>
+                    <li><a href="#">CONTACTENOS</a></li>
+                </ul>
+            </div>
+
+            <div class="Buscar">
+                <input class="busq" type="text" placeholder="Escribe tu texto">
+                <a href="#"><button class="Busqueda_Inicio">Buscar</button></a>
+            </div>
+            <div class="menu-toggle">
+                  <ion-icon name="menu-outline"></ion-icon>
+            </div>
+        </div>
+
+        <div class="contenido">
+            <h1>Gestión Inteligente de Nómina<br><span>Automatiza. Administra. Crece.</span></h1>
+            <p class="parrafo">Simplifica la gestión de tu empresa con un sistema ágil, moderno y 100% confiable.
+                <br>Controla nómina, empleados y reportes desde una sola plataforma.
+                <br>¡Administra tu equipo con innovación y precisión!</p>
+            <button class="unete"><a href="#">HAZ PARTE</a></button>
+
+            <div class="form">
+                 <h2>Ingresa aquí</h2>
+                  <input type="email" id="loginEmail" placeholder="Ingresa tu correo aquí">
+                   <input type="password" id="loginPassword" placeholder="Ingresa tu contraseña aquí">
+                      <button class="boton" onclick="iniciarSesion()">Iniciar sesión</button>
+
+                 <p class="link">¿No tienes una cuenta?<br>
+               <a href="#">Regístrate aquí</a>.
+                </p>
+                 <p class="liw">Inicia sesión con</p>
+
+                <div class="icons">
+                    <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
+                    <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+                    <a href="#"><ion-icon name="logo-google"></ion-icon></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script src="login.js"></script>
+|       <!-- icono barra de nav -->
+    <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const menu = document.querySelector('.menu');
+
+    menuToggle.addEventListener('click', () => {
+        menu.classList.toggle('active');
+    });
+</script>
+<script src="close.js"></script>
+</body>
+</html>

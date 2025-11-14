@@ -1,0 +1,44 @@
+<<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOMISOFT - Empleado</title>
+    <link rel="stylesheet" href="style-emple.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Logo en la esquina superior derecha -->
+        <div class="header-logo">NOMISOFT</div>
+
+        <!-- Título principal -->
+        <h1>Generar Reporte</h1>
+
+        <!-- Formulario -->
+        <div class="form-group">
+            <label for="tipoReporte">Tipo de Reporte</label>
+            <select id="tipoReporte">
+                <option value="nomina">Nomina</option>
+                <option value="vacaciones">Vacaciones</option>
+                <option value="horasextras">Horas Extras</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="periodo">Periodo</label>
+            <select id="periodo">
+                <option value="mesActual">Mes Actual</option>
+                <option value="opcion2">Option 2</option>
+                <option value="opcion3">Option 3</option>
+                <option value="opcion4">Option 4</option>
+                <option value="opcion5">Option 5</option>
+            </select>
+        </div>
+
+        <!-- Botón Generar -->
+        <button id="btnGenerar">Generar</button>
+    </div>
+
+    <script src="script-emple.js"></script>
+</body>
+</html>

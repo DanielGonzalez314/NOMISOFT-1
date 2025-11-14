@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NOMISOFT</title>
+  <link rel="stylesheet" href="stylebarraadm.css" />
+  <link rel="stylesheet" href="ad.com.em.css" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="left">
+      <div class="menu-container" id="toggleSidebar">
+        <div class="menu">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+      </div>
+      <div class="brand">
+        <img src="icons/udemy.svg" alt="Logo NOMISOFT" class="logo" />
+        <span class="name">NOMISOFT</span>
+      </div>
+    </div>
+    <div class="right">
+      <a href="#"><img src="icons/chat.svg" alt="Chat" class="icon" /></a>
+      <a href="#"><img src="icons/question.svg" alt="Ayuda" class="icon" /></a>
+      <a href="#"><img src="icons/notification.svg" alt="Notificaciones" class="icon" /></a>
+      <img src="img/icono usuario.png" alt="Usuario" class="user" />
+
+      <!-- BOTÓN DE CERRAR SESIÓN -->
+      <button 
+        onclick="cerrarSesion()" 
+        class="btn-logout"
+        style="
+          background: #e74c3c;
+          color: white;
+          border: none;
+          padding: 6px 12px;
+          border-radius: 4px;
+          font-size: 0.9rem;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          margin-left: 1rem;
+        "
+      >
+        <ion-icon name="log-out-outline" style="font-size: 16px;"></ion-icon>
+        Salir
+      </button>
+    </div>
+  </header>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <ul>
+      <li><a href="#" id="mostrarInicio"><img src="icons/chat.svg" class="icon" /> Inicio</a></li>
+      <li><a href="#"><img src="icons/question.svg" class="icon" /> Servicios</a></li>
+
+      <!-- EMPLEADO -->
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle"><img src="icons/chat.svg" class="icon" /> Empleado</a>
+        <ul class="submenu">
+          <li><a href="#" id="mostrarRegistrar">Registrar empleado</a></li>
+          <li><a href="#" id="mostrarEditar">Editar empleado</a></li>
+          <li><a href="#" id="mostrarConsulta">Consultar</a></li>
+        </ul>
+      </li>
+
+  <!-- NÓMINA -->
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle"><img src="icons/money.svg" class="icon" /> Nómina</a>
+    <ul class="submenu">
+      <li><a href="#" id="mostrarCrearNomina">Crear nómina</a></li>
+      <li><a href="#" id="mostrarEditarNomina">Editar nómina</a></li>
+      <li><a href="#">Liquidar nómina</a></li>
+    <li><a href="#">Editar parámetros</a></li>
+  </ul>
+</li>
+    </ul>
+
+    <div class="dark-mode-toggle">
+      <button id="toggleDarkMode" class="dark-toggle">🌙 Modo oscuro</button>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="content">
+
+    <!-- 🔹 SECCIÓN DE INICIO -->
+    <section id="inicio">
+      <h2>BIENVENIDO ADMINISTRADOR</h2>
+
+      <!-- TARJETAS DE RESUMEN RÁPIDO -->
+      <div class="dashboard-cards">
+        <div class="card">
+          <h3>Empleados Activos</h3>
+          <p class="metric">24</p>
+          <span class="subtitle">En nómina actual</span>
+        </div>
+
+        <div class="card">
+          <h3>Último Pago</h3>
+          <p class="metric">15 oct 2025</p>
+          <span class="subtitle">Procesado correctamente</span>
+        </div>
+
+        <div class="card">
+          <h3>Próximo Pago</h3>
+          <p class="metric">15 nov 2025</p>
+          <span class="subtitle">Faltan 2 días</span>
+        </div>
+
+        <div class="card">
+          <h3>Reportes Pendientes</h3>
+          <p class="metric">3</p>
+          <span class="subtitle">Retenciones, horas extras, seguridad social</span>
+        </div>
+      </div>
+
+      <!-- ALERTAS -->
+      <div class="alert-section">
+        <h3>🔔 Alertas importantes</h3>
+        <ul>
+          <li>✅ El empleado "Manuela Murcia" tiene su EPS vencida.</li>
+          <li>⚠️ El departamento de RH tiene 3 empleados sin cargo asignado.</li>
+          <li>📅 La nómina del 15/11/2025 está programada para procesarse.</li>
+        </ul>
+      </div>
+
+      <!-- ESTADÍSTICAS -->
+      <div class="stats-section">
+        <h3>📈 Estadísticas mensuales</h3>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="label">Total pagado</span>
+            <span class="value">$89,200,000</span>
+          </div>
+          <div class="stat-item">
+            <span class="label">Retenciones</span>
+            <span class="value">$12,400,000</span>
+          </div>
+          <div class="stat-item">
+            <span class="label">Horas extras</span>
+            <span class="value">147 hrs</span>
+          </div>
+          <div class="stat-item">
+            <span class="label">Empleados nuevos</span>
+            <span class="value">3</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🔍 CONSULTA DE EMPLEADOS -->
+    <section class="consulta-empleado" id="consultaEmpleado" style="display: none;">
+      <h2>Consulta de Empleados</h2>
+
+      <form id="filtroAvanzado" class="form-empleado">
+        <!-- FILTROS PRINCIPALES -->
+        <div class="filtros-grid">
+          <div class="field-group">
+            <label for="comboBox_Departamento">Departamento:</label>
+            <input type="text" id="comboBox_Departamento" name="comboBox_Departamento" placeholder="Ej: Finanzas" />
+          </div>
+
+          <div class="field-group">
+            <label for="comboBox_Salario_Base">Salario:</label>
+            <select id="comboBox_Salario_Base" name="comboBox_Salario_Base">
+              <option value="">--</option>
+              <option value="1.400.000 - 1.999.999">1.400.000 - 1.999.999</option>
+              <option value="2.000.000 - 2.999.999">2.000.000 - 2.999.999</option>
+              <option value="3.000.000 - 4.999.999">3.000.000 - 4.999.999</option>
+              <option value="+ 5.000.000">+ 5.000.000</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label for="textBox_Fecha_Ingreso">Fecha de Ingreso:</label>
+            <input type="text" id="textBox_Fecha_Ingreso" name="textBox_Fecha_Ingreso" placeholder="YYYY-MM-DD" />
+          </div>
+
+          <div class="field-group">
+            <label for="textBox_Fecha_Nacimiento">Fecha de Nacimiento:</label>
+            <input type="text" id="textBox_Fecha_Nacimiento" name="textBox_Fecha_Nacimiento" placeholder="YYYY-MM-DD" />
+          </div>
+
+          <div class="field-group">
+            <label for="textBox_Numero_Hijos">Número de Hijos:</label>
+            <input type="number" id="textBox_Numero_Hijos" name="textBox_Numero_Hijos" min="0" placeholder="0" />
+          </div>
+
+          <div class="field-group">
+            <label for="comboBox_Cargo">Cargo:</label>
+            <input type="text" id="comboBox_Cargo" name="comboBox_Cargo" placeholder="--" />
+          </div>
+
+          <!-- ✅ CAMPOS DE SEGURIDAD SOCIAL -->
+          <div class="field-group">
+            <label for="EPS">EPS:</label>
+            <select id="EPS" name="EPS">
+              <option value="">--</option>
+              <option value="Sanitas">Sanitas</option>
+              <option value="SURA">SURA</option>
+              <option value="Compensar">Compensar</option>
+              <option value="Nueva EPS">Nueva EPS</option>
+              <option value="Salud Total">Salud Total</option>
+              <option value="Famisanar">Famisanar</option>
+              <option value="Coosalud">Coosalud</option>
+              <option value="SOS">SOS</option>
+              <option value="Asmet Salud">Asmet Salud</option>
+              <option value="Sabia Salud">Sabia Salud</option>
+              <option value="Capresoca">Capresoca</option>
+              <option value="Dusakawi EPSI">Dusakawi EPSI</option>
+              <option value="Mallamas EPSI">Mallamas EPSI</option>
+              <option value="Manexka EPSI">Manexka EPSI</option>
+              <option value="AIC EPSI">AIC EPSI</option>
+              <option value="Medimás EPS">Medimás EPS</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label for="Fondo_Cesantias">Fondo de Cesantías:</label>
+            <select id="Fondo_Cesantias" name="Fondo_Cesantias">
+              <option value="">--</option>
+              <option value="Porvenir">Porvenir</option>
+              <option value="Protección">Protección</option>
+              <option value="Cofondos">Cofondos</option>
+              <option value="Skandia">Skandia</option>
+              <option value="Fondo Nacional del Ahorro">Fondo Nacional del Ahorro</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label for="Fondo_Pension">Fondo de Pensión:</label>
+            <select id="Fondo_Pension" name="Fondo_Pension">
+              <option value="">--</option>
+              <option value="Colpensiones">Colpensiones</option>
+              <option value="Porvenir">Porvenir</option>
+              <option value="Protección">Protección</option>
+              <option value="Cofondos">Cofondos</option>
+              <option value="Skandia">Skandia</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- COLUMNAS ADICIONALES -->
+        <div class="opciones-columnas">
+          <h3>Filtros adicionales</h3>
+          <div class="checkbox-grid">
+            <label><input type="checkbox" id="Tipo_Documento" name="Tipo_Documento" /> Tipo de Documento</label>
+            <label><input type="checkbox" id="Telefono" name="Telefono" /> Teléfono</label>
+            <label><input type="checkbox" id="Correo" name="Correo" /> Correo Electrónico</label>
+            <label><input type="checkbox" id="Fecha_Nacimiento_Check" name="Fecha_Nacimiento_Check" /> Fecha de Nacimiento</label>
+            <label><input type="checkbox" id="Direccion" name="Direccion" /> Dirección</label>
+            <label><input type="checkbox" id="Estado_Civil" name="Estado_Civil" /> Estado Civil</label>
+            <label><input type="checkbox" id="Cargo_Check" name="Cargo_Check" /> Cargo</label>
+            <label><input type="checkbox" id="Numero_Hijos" name="Numero_Hijos" /> Numero de hijos</label>
+            <label><input type="checkbox" id="EPS" name="EPS" /> EPS</label>
+            <label><input type="checkbox" id="Fondo_Cesantias" name="Fondo_Cesantias" /> Fondo de cesantias</label>
+            <label><input type="checkbox" id="Fondo_Pension" name="Fondo_Pension" /> Fondo de pension</label>
+
+            </div>
+        </div>
+
+        <!-- BOTÓN FILTRAR -->
+        <div class="boton-filtrar">
+          <button type="submit" class="btn-filtrar">🔎 Filtrar empleados</button>
+        </div>
+      </form>
+
+      <!-- RESULTADOS -->
+      <div id="resultadoAvanzado" class="resultado-empleado"></div>
+    </section>
+
+    <!-- REGISTRAR EMPLEADOS -->
+    <section id="registrarEmpleado" style="display: none;">
+      <h2>Registrar Nuevo Empleado</h2>
+      <form id="formularioRegistroEmpleado">
+        <!-- DATOS PERSONALES -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="txt_Nombre1">Primer Nombre *</label>
+            <input type="text" id="txt_Nombre1" required />
+          </div>
+          <div class="form-group">
+            <label for="txt_Nombre2">Segundo Nombre</label>
+            <input type="text" id="txt_Nombre2" />
+          </div>
+          <div class="form-group">
+            <label for="txt_Apellido1">Primer Apellido *</label>
+            <input type="text" id="txt_Apellido1" required />
+          </div>
+          <div class="form-group">
+            <label for="txt_Apellido2">Segundo Apellido</label>
+            <input type="text" id="txt_Apellido2" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="Com_Box_Tipo_Doc">Tipo de documento *</label>
+            <select id="Com_Box_Tipo_Doc" required>
+              <option value="">Seleccionar...</option>
+              <option value="CC">Cédula de Ciudadanía</option>
+              <option value="CE">Cédula de Extranjería</option>
+              <option value="TI">Tarjeta de Identidad</option>
+              <option value="PP">Pasaporte</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="txt_Numero_Doc">Número de documento *</label>
+            <input type="text" id="txt_Numero_Doc" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="txt_Fecha_Nacimiento">Fecha de nacimiento *</label>
+            <input type="date" id="txt_Fecha_Nacimiento" required />
+          </div>
+          <div class="form-group">
+            <label for="txt_Telefono">Teléfono</label>
+            <input type="tel" id="txt_Telefono" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="txt_Correo">Correo Electrónico</label>
+            <input type="email" id="txt_Correo" />
+          </div>
+          <div class="form-group">
+            <label for="txt_Direccion">Dirección *</label>
+            <input type="text" id="txt_Direccion" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="txt_Estado_Civil">Estado Civil *</label>
+            <select id="txt_Estado_Civil" required>
+              <option value="">Seleccionar...</option>
+              <option value="Soltero">Soltero(a)</option>
+              <option value="Casado">Casado(a)</option>
+              <option value="Divorciado">Divorciado(a)</option>
+              <option value="Viudo">Viudo(a)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="txt_Hijos">Numero de hijos *</label>
+            <input type="number" id="txt_Hijos" min="0" required />
+          </div>
+        </div>
+
+        <!-- DATOS DEL CARGO -->
+        <div class="section-title">
+          <h3>Datos del Cargo</h3>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="txt_Cargo">Cargo</label>
+            <input type="text" id="txt_Cargo" />
+          </div>
+          <div class="form-group">
+            <label for="txt_Departamento">Departamento</label>
+            <input type="text" id="txt_Departamento" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="txt_Fecha_Ingreso">Fecha Ingreso</label>
+            <input type="date" id="txt_Fecha_Ingreso" />
+          </div>
+          <div class="form-group">
+            <label for="text_Tipo_Contrato">Tipo de Contrato</label>
+            <input type="text" id="text_Tipo_Contrato" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="txt_Salario">Salario Base</label>
+            <input type="number" id="txt_Salario" min="0" step="1000" />
+          </div>
+          <div class="form-group">
+            <label for="txt_Estado">Estado</label>
+            <input type="text" id="txt_Estado" placeholder="Activo, Inactivo, etc." />
+          </div>
+        </div>
+
+        <!-- DATOS DE SEGURIDAD SOCIAL -->
+        <div class="section-title">
+          <h3>Datos de Seguridad Social</h3>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="comboBox_Eps">EPS</label>
+            <select id="comboBox_Eps">
+              <option value="">Seleccionar...</option>
+              <option value="Sanitas">Sanitas</option>
+              <option value="SURA">SURA</option>
+              <option value="Compensar">Compensar</option>
+              <option value="Nueva EPS">Nueva EPS</option>
+              <option value="Salud Total">Salud Total</option>
+              <option value="Famisanar">Famisanar</option>
+              <option value="Coosalud">Coosalud</option>
+              <option value="SOS">SOS</option>
+              <option value="Asmet Salud">Asmet Salud</option>
+              <option value="Sabia Salud">Sabia Salud</option>
+              <option value="Capresoca">Capresoca</option>
+              <option value="Dusakawi EPSI">Dusakawi EPSI</option>
+              <option value="Mallamas EPSI">Mallamas EPSI</option>
+              <option value="Manexka EPSI">Manexka EPSI</option>
+              <option value="AIC EPSI">AIC EPSI</option>
+              <option value="Medimás EPS">Medimás EPS</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="comboBox_Pension">Fondo de Pensión</label>
+            <select id="comboBox_Pension">
+              <option value="">Seleccionar...</option>
+              <option value="Colpensiones">Colpensiones</option>
+              <option value="Porvenir">Porvenir</option>
+              <option value="Protección">Protección</option>
+              <option value="Cofondos">Cofondos</option>
+              <option value="Skandia">Skandia</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="comboBox_Cesantias">Fondo de Cesantías</label>
+            <select id="comboBox_Cesantias">
+              <option value="">Seleccionar...</option>
+              <option value="Porvenir">Porvenir</option>
+              <option value="Protección">Protección</option>
+              <option value="Cofondos">Cofondos</option>
+              <option value="Skandia">Skandia</option>
+              <option value="Fondo Nacional del Ahorro">Fondo Nacional del Ahorro</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit">Guardar Empleado</button>
+          <button type="button" id="btnCancelarRegistro">Cancelar</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- EDITAR EMPLEADO -->
+    <section id="editarEmpleado" style="display: none;">
+      <h2>Editar Empleado</h2>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="txt_Numero_Doc">Número de documento *</label>
+          <input type="text" id="txt_Numero_Doc" required />
+        </div>
+        <div class="form-group">
+          <button type="button" id="button_Buscar">Buscar</button>
+        </div>
+      </div>
+
+      <!-- DATOS PERSONALES -->
+      <div class="form-row">
+          <div class="form-group">
+            <label for="txt_Nombre1">Primer Nombre *</label>
+            <input type="text" id="txt_Nombre1" required />
+          </div>
+          <div class="form-group">
+            <label for="txt_Nombre2">Segundo Nombre</label>
+            <input type="text" id="txt_Nombre2" />
+          </div>
+          <div class="form-group">
+            <label for="txt_Apellido1">Primer Apellido *</label>
+            <input type="text" id="txt_Apellido1" required />
+          </div>
+          <div class="form-group">
+            <label for="txt_Apellido2">Segundo Apellido</label>
+            <input type="text" id="txt_Apellido2" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="Com_Box_Tipo_Doc">Tipo de documento *</label>
+            <select id="Com_Box_Tipo_Doc" required>
+              <option value="">Seleccionar...</option>
+              <option value="CC">Cédula de Ciudadanía</option>
+              <option value="CE">Cédula de Extranjería</option>
+              <option value="TI">Tarjeta de Identidad</option>
+              <option value="PP">Pasaporte</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="txt_Numero_Doc">Número de documento *</label>
+            <input type="text" id="txt_Numero_Doc" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="txt_Fecha_Nacimiento">Fecha de nacimiento *</label>
+            <input type="date" id="txt_Fecha_Nacimiento" required />
+          </div>
+          <div class="form-group">
+            <label for="txt_Telefono">Teléfono</label>
+            <input type="tel" id="txt_Telefono" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="txt_Correo">Correo Electrónico</label>
+            <input type="email" id="txt_Correo" />
+          </div>
+          <div class="form-group">
+            <label for="txt_Direccion">Dirección *</label>
+            <input type="text" id="txt_Direccion" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="txt_Estado_Civil">Estado Civil *</label>
+            <select id="txt_Estado_Civil" required>
+              <option value="">Seleccionar...</option>
+              <option value="Soltero">Soltero(a)</option>
+              <option value="Casado">Casado(a)</option>
+              <option value="Divorciado">Divorciado(a)</option>
+              <option value="Viudo">Viudo(a)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="txt_Hijos">Numero de hijos *</label>
+            <input type="number" id="txt_Hijos" min="0" required />
+          </div>
+        </div>
+
+        <!-- DATOS DEL CARGO -->
+        <div class="section-title">
+          <h3>Datos del Cargo</h3>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="txt_Cargo">Cargo</label>
+            <input type="text" id="txt_Cargo" />
+          </div>
+          <div class="form-group">
+            <label for="txt_Departamento">Departamento</label>
+            <input type="text" id="txt_Departamento" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="txt_Fecha_Ingreso">Fecha Ingreso</label>
+            <input type="date" id="txt_Fecha_Ingreso" />
+          </div>
+          <div class="form-group">
+            <label for="text_Tipo_Contrato">Tipo de Contrato</label>
+            <input type="text" id="text_Tipo_Contrato" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="txt_Salario">Salario Base</label>
+            <input type="number" id="txt_Salario" min="0" step="1000" />
+          </div>
+          <div class="form-group">
+            <label for="txt_Estado">Estado</label>
+            <input type="text" id="txt_Estado" placeholder="Activo, Inactivo, etc." />
+          </div>
+        </div>
+
+        <!-- DATOS DE SEGURIDAD SOCIAL -->
+        <div class="section-title">
+          <h3>Datos de Seguridad Social</h3>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="comboBox_Eps">EPS</label>
+            <select id="comboBox_Eps">
+              <option value="">Seleccionar...</option>
+              <option value="Sanitas">Sanitas</option>
+              <option value="SURA">SURA</option>
+              <option value="Compensar">Compensar</option>
+              <option value="Nueva EPS">Nueva EPS</option>
+              <option value="Salud Total">Salud Total</option>
+              <option value="Famisanar">Famisanar</option>
+              <option value="Coosalud">Coosalud</option>
+              <option value="SOS">SOS</option>
+              <option value="Asmet Salud">Asmet Salud</option>
+              <option value="Sabia Salud">Sabia Salud</option>
+              <option value="Capresoca">Capresoca</option>
+              <option value="Dusakawi EPSI">Dusakawi EPSI</option>
+              <option value="Mallamas EPSI">Mallamas EPSI</option>
+              <option value="Manexka EPSI">Manexka EPSI</option>
+              <option value="AIC EPSI">AIC EPSI</option>
+              <option value="Medimás EPS">Medimás EPS</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="comboBox_Pension">Fondo de Pensión</label>
+            <select id="comboBox_Pension">
+              <option value="">Seleccionar...</option>
+              <option value="Colpensiones">Colpensiones</option>
+              <option value="Porvenir">Porvenir</option>
+              <option value="Protección">Protección</option>
+              <option value="Cofondos">Cofondos</option>
+              <option value="Skandia">Skandia</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="comboBox_Cesantias">Fondo de Cesantías</label>
+            <select id="comboBox_Cesantias">
+              <option value="">Seleccionar...</option>
+              <option value="Porvenir">Porvenir</option>
+              <option value="Protección">Protección</option>
+              <option value="Cofondos">Cofondos</option>
+              <option value="Skandia">Skandia</option>
+              <option value="Fondo Nacional del Ahorro">Fondo Nacional del Ahorro</option>
+            </select>
+          </div>
+        </div>
+
+      <div class="form-actions">
+        <button type="button" id="btnGuardarEdicion">Guardar Cambios</button>
+        <button type="button" id="btnCancelarEdicion">Cancelar</button>
+      </div>
+    </section>
+    <!-- 💰 CREAR NÓMINA -->
+<section id="crearNomina" style="display: none;">
+  <h2>Crear Nómina</h2>
+  <form id="formularioCrearNomina" class="form-nomina">
+    <div class="nomina-grid">
+      <div class="field-group">
+        <label for="textBox_Documento">Documento:</label>
+        <input type="text" id="textBox_Documento" name="textBox_Documento" placeholder="Ej: 1001" required />
+      </div>
+
+      <div class="field-group">
+        <label for="textBox_Empleado">Empleado:</label>
+        <input type="text" id="textBox_Empleado" name="textBox_Empleado" placeholder="Nombre del empleado" readonly />
+      </div>
+
+      <div class="field-group">
+        <label for="textBox_Periodo">Período:</label>
+        <input type="text" id="textBox_Periodo" name="textBox_Periodo" placeholder="Ej: Nov 2025" required />
+      </div>
+
+      <div class="field-group">
+        <label for="textBox_Dias_S">Días Diurno:</label>
+        <input type="number" id="textBox_Dias_S" name="textBox_Dias_S" min="0" placeholder="0" />
+      </div>
+
+      <div class="field-group">
+        <label for="textBox_Dias_N">Días Nocturnos:</label>
+        <input type="number" id="textBox_Dias_N" name="textBox_Dias_N" min="0" placeholder="0" />
+      </div>
+
+      <div class="field-group">
+        <label for="textBox_Dias_F">Días Festivos:</label>
+        <input type="number" id="textBox_Dias_F" name="textBox_Dias_F" min="0" placeholder="0" />
+      </div>
+
+      <div class="field-group">
+        <label for="textBox_Extras_D">Extras Diurnas:</label>
+        <input type="number" id="textBox_Extras_D" name="textBox_Extras_D" min="0" placeholder="0" />
+      </div>
+
+      <div class="field-group">
+        <label for="textBox_Extras_N">Extras Nocturnas:</label>
+        <input type="number" id="textBox_Extras_N" name="textBox_Extras_N" min="0" placeholder="0" />
+      </div>
+
+      <div class="field-group">
+        <label for="textBox_Extras_F_D">Extras Festivas D:</label>
+        <input type="number" id="textBox_Extras_F_D" name="textBox_Extras_F_D" min="0" placeholder="0" />
+      </div>
+
+      <div class="field-group">
+        <label for="textBox_F_N">Extras Festivas N:</label>
+        <input type="number" id="textBox_F_N" name="textBox_F_N" min="0" placeholder="0" />
+      </div>
+
+      <div class="field-group">
+        <label for="textBox_Bonificaciones">Bonificaciones:</label>
+        <input type="number" id="textBox_Bonificaciones" name="textBox_Bonificaciones" min="0" step="1000" placeholder="0" />
+      </div>
+
+      <div class="field-group">
+        <label for="textBox_Comisiones">Comisiones:</label>
+        <input type="number" id="textBox_Comisiones" name="textBox_Comisiones" min="0" step="1000" placeholder="0" />
+      </div>
+
+      <div class="field-group">
+        <label for="totalDevengado">Total Devengado:</label>
+        <input type="number" id="totalDevengado" name="totalDevengado" min="0" step="1000" placeholder="0" readonly />
+      </div>
+
+      <div class="field-group">
+        <label for="totalDeducciones">Total Deducciones:</label>
+        <input type="number" id="totalDeducciones" name="totalDeducciones" min="0" step="1000" placeholder="0" readonly />
+      </div>
+
+      <div class="field-group">
+        <label for="netoPagar">Neto a pagar:</label>
+        <input type="number" id="netoPagar" name="netoPagar" min="0" step="1000" placeholder="0" readonly />
+      </div>
+    </div>
+
+    <div class="boton-form">
+      <button type="submit" class="btn-filtrar">✅ Generar nómina</button>
+      <button type="button" id="btnCancelarNomina" class="btn-cancelar">Cancelar</button>
+    </div>
+  </form>
+</section>
+<!-- ✏️ EDITAR NÓMINA -->
+<section id="editarNomina" style="display: none;">
+  <h2>Editar Nómina</h2>
+  <form id="formularioEditarNomina" class="form-nomina">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="numeroDocumentoEditarNomina">Número de documento *</label>
+        <input type="text" id="numeroDocumentoEditarNomina" required />
+      </div>
+      <div class="form-group">
+        <label for="periodoEditarNomina">Período *</label>
+        <input type="text" id="periodoEditarNomina" required />
+      </div>
+      <div class="form-group">
+        <button type="button" id="btnBuscarNomina">Buscar</button>
+      </div>
+    </div>
+
+    <div class="nomina-grid">
+      <div class="field-group">
+        <label for="diasDiurnosEditar">Días Diurno:</label>
+        <input type="number" id="diasDiurnosEditar" name="diasDiurnosEditar" min="0" placeholder="0" />
+      </div>
+
+      <div class="field-group">
+        <label for="diasNocturnosEditar">Días Nocturnos:</label>
+        <input type="number" id="diasNocturnosEditar" name="diasNocturnosEditar" min="0" placeholder="0" />
+      </div>
+
+      <div class="field-group">
+        <label for="diasFestivosEditar">Días Festivos:</label>
+        <input type="number" id="diasFestivosEditar" name="diasFestivosEditar" min="0" placeholder="0" />
+      </div>
+
+      <div class="field-group">
+        <label for="extrasDiurnasEditar">Extras Diurnas:</label>
+        <input type="number" id="extrasDiurnasEditar" name="extrasDiurnasEditar" min="0" placeholder="0" />
+      </div>
+
+      <div class="field-group">
+        <label for="extrasNocturnasEditar">Extras Nocturnas:</label>
+        <input type="number" id="extrasNocturnasEditar" name="extrasNocturnasEditar" min="0" placeholder="0" />
+      </div>
+
+      <div class="field-group">
+        <label for="extrasFestivasDEditar">Extras Festivas D:</label>
+        <input type="number" id="extrasFestivasDEditar" name="extrasFestivasDEditar" min="0" placeholder="0" />
+      </div>
+
+      <div class="field-group">
+        <label for="extrasFestivasNEditar">Extras Festivas N:</label>
+        <input type="number" id="extrasFestivasNEditar" name="extrasFestivasNEditar" min="0" placeholder="0" />
+      </div>
+
+      <div class="field-group">
+        <label for="bonificacionesEditar">Bonificaciones:</label>
+        <input type="number" id="bonificacionesEditar" name="bonificacionesEditar" min="0" step="1000" placeholder="0" />
+      </div>
+
+      <div class="field-group">
+        <label for="comisionesEditar">Comisiones:</label>
+        <input type="number" id="comisionesEditar" name="comisionesEditar" min="0" step="1000" placeholder="0" />
+      </div>
+
+      <div class="field-group">
+        <label for="totalDevengadoEditar">Total Devengado:</label>
+        <input type="number" id="totalDevengadoEditar" name="totalDevengadoEditar" min="0" step="1000" placeholder="0" readonly />
+      </div>
+
+      <div class="field-group">
+        <label for="totalDeduccionesEditar">Total Deducciones:</label>
+        <input type="number" id="totalDeduccionesEditar" name="totalDeduccionesEditar" min="0" step="1000" placeholder="0" readonly />
+      </div>
+
+      <div class="field-group">
+        <label for="netoPagarEditar">Neto a pagar:</label>
+        <input type="number" id="netoPagarEditar" name="netoPagarEditar" min="0" step="1000" placeholder="0" readonly />
+      </div>
+    </div>
+
+    <div class="boton-form">
+      <button type="button" id="btnGuardarNomina" class="btn-filtrar">💾 Guardar cambios</button>
+      <button type="button" id="btnCancelarEdicionNomina" class="btn-cancelar">Cancelar</button>
+    </div>
+  </form>
+</section>
+  </main>
+
+  <!-- SCRIPTS -->
+  <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

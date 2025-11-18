@@ -75,7 +75,8 @@
     <ul class="submenu">
       <li><a href="#" id="mostrarCrearNomina">Crear nómina</a></li>
       <li><a href="#" id="mostrarEditarNomina">Editar nómina</a></li>
-      <li><a href="#">Liquidar nómina</a></li>
+      <li><a href="#" id="mostrarLiquidarNomina">Liquidar nómina</a></li>
+      
     <li><a href="#">Editar parámetros</a></li>
   </ul>
 </li>
@@ -815,6 +816,34 @@
       <button type="button" id="btnCancelarEdicionNomina" class="btn-cancelar">Cancelar</button>
     </div>
   </form>
+</section>
+<!-- 💧 LIQUIDAR NÓMINA -->
+<section id="liquidarNomina" style="display: none;">
+  <h2>Liquidar Nómina</h2>
+  
+  <!-- BÚSQUEDA -->
+  <div class="form-nomina">
+    <div class="nomina-grid">
+      <div class="field-group">
+        <label for="nombreEmpleadoLiquidar">Nombre de empleado:</label>
+        <input type="text" id="nombreEmpleadoLiquidar" name="nombreEmpleadoLiquidar" placeholder="Ej: Manuela Murcia" />
+      </div>
+
+      <div class="field-group">
+        <label for="documentoLiquidar">Documento:</label>
+        <input type="text" id="documentoLiquidar" name="documentoLiquidar" placeholder="Ej: 1001" />
+      </div>
+    </div>
+
+    <div class="boton-form">
+      <button type="button" id="btnBuscarLiquidar" class="btn-filtrar">🔍 Buscar nómina</button>
+    </div>
+  </div>
+
+  <!-- RESULTADOS -->
+  <div id="resultadoLiquidar" class="resultado-empleado" style="margin-top: 2rem;">
+    <p class="no-resultados">Ingresa un documento y haz clic en "Buscar nómina" para ver los resultados.</p>
+  </div>
 </section>
   </main>
 
